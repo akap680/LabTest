@@ -1,0 +1,106 @@
+<html>
+	<head>
+		<title>myAnswer</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	</head>
+	<body>
+		<h1>Question Seven</h1>
+		<input id="inputBox" type="text">
+		<input id="dblBtn" type="button" value="Double" onClick="double()">
+		<br>
+		
+		<h1>Question Eight (Option B)</h1>
+		<p>
+			<span>Number1:</span><input id="input1" type="text">
+		</p>
+		<p>
+			<span>Number2:</span><input id="input2" type="text">
+		</p>
+		<p>
+			<span>Number3:</span><input id="input3" type="text">
+		</p>
+		<p>
+			<span>Number4:</span><input id="input4" type="text">
+		</p>
+		<p>
+			<span>Number5:</span><input id="input5" type="text">
+		</p>
+		<p>
+			<span>Number6:</span><input id="input6" type="text">
+		</p>
+		<p>
+			<span>Number7:</span><input id="input7" type="text">
+		</p>
+		<p>
+			<span>Number8:</span><input id="input8" type="text">
+		</p>
+		<p>
+			<span>Division Value:</span><input id="input9" type="text">
+		</p>
+		<br>
+		<input id="divBtn" type="button" value="Check" onClick="check()">
+		<br>
+		<br>
+		<a href="https://github.com/akap680/LabTest.git">Repository</a>
+		<script>
+			function double() {
+				var input = $("#inputBox").val();
+				
+				if (!input){
+					alert("Input could not be blank");
+				} 
+				else if (isNaN(input)) {
+					alert("Input should be a number");
+				}
+				else {
+					$("#inputBox").val(input*2);
+				}
+			}
+			
+			function check() {
+				var validValues = checkValues(); 
+				if (validValues) {
+					if ($("#input9").val() > 0) {
+						//if all remainders are equal to 0 the multiplication of them will also equal 0
+						if(calculateResult()){
+							alert("Each number divided by Division Value gets a remainder of 0.");
+						} else {
+							alert("Not all of these numbers divided by Division Value gets a remainder of 0.");
+						}
+					} else {
+						alert("Please make sure the Division value is greater than 0");
+					}
+				} else {
+					alert("One or more inputs are invalid: Please ensure every field has a valid number entered.");
+				}
+			}
+			function calculateResult() { 
+				var result = 1;
+				for (i = 1; i < 9; i++) { 
+					var result = result * $("#input" + i.toString()).val()%$("#input9").val();
+				}	
+				if (result == 0) {
+					return true;
+				} else {
+					return false;
+				}
+
+			}
+			
+			function checkValues() {
+				
+				for (i = 1; i < 10; i++) { 
+					var input = $("#input" + i.toString()).val();
+					if (!input){
+						return false;
+					} 
+					else if (isNaN(input)) {
+						return false;
+					}
+				}	
+				return true;
+			}
+			
+		</script>
+	</body>
+</html>
